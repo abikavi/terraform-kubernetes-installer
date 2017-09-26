@@ -34,7 +34,7 @@ module "security-list-etcd" {
 module "subnet-etcd-ad1" {
   source                        = "subnets/etcd"
   additional_security_lists_ids = ["${var.additional_etcd_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   cidr_block                    = "10.0.20.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -49,7 +49,7 @@ module "subnet-etcd-ad1" {
 module "subnet-etcd-ad2" {
   source                        = "subnets/etcd"
   additional_security_lists_ids = ["${var.additional_etcd_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   cidr_block                    = "10.0.21.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -64,7 +64,7 @@ module "subnet-etcd-ad2" {
 module "subnet-etcd-ad3" {
   source                        = "subnets/etcd"
   additional_security_lists_ids = ["${var.additional_etcd_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   cidr_block                    = "10.0.22.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -88,7 +88,7 @@ module "security-list-k8smaster" {
 module "subnet-k8sMasterSubnetAd1" {
   source                        = "subnets/k8smaster"
   additional_security_lists_ids = ["${var.additional_k8s_master_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   cidr_block                    = "10.0.30.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -103,7 +103,7 @@ module "subnet-k8sMasterSubnetAd1" {
 module "subnet-k8sMasterSubnetAd2" {
   source                        = "subnets/k8smaster"
   additional_security_lists_ids = ["${var.additional_k8s_master_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   cidr_block                    = "10.0.31.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -118,7 +118,7 @@ module "subnet-k8sMasterSubnetAd2" {
 module "subnet-k8sMasterSubnetAd3" {
   source                        = "subnets/k8smaster"
   additional_security_lists_ids = ["${var.additional_k8s_master_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   cidr_block                    = "10.0.32.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -142,7 +142,7 @@ module "security-list-k8sworker" {
 module "subnet-k8sWorkerSubnetAd1" {
   source                        = "subnets/k8sworker"
   additional_security_lists_ids = ["${var.additional_k8s_worker_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   cidr_block                    = "10.0.40.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -157,7 +157,7 @@ module "subnet-k8sWorkerSubnetAd1" {
 module "subnet-k8sWorkerSubnetAd2" {
   source                        = "subnets/k8sworker"
   additional_security_lists_ids = ["${var.additional_k8s_worker_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   cidr_block                    = "10.0.41.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -172,7 +172,7 @@ module "subnet-k8sWorkerSubnetAd2" {
 module "subnet-k8sWorkerSubnetAd3" {
   source                        = "subnets/k8sworker"
   additional_security_lists_ids = ["${var.additional_k8s_worker_security_lists_ids}"]
-  availability_domain           = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain           = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   cidr_block                    = "10.0.42.0/24"
   compartment_ocid              = "${var.compartment_ocid}"
   dhcp_options_id               = "${module.vcn.dhcp_options_id}"
@@ -189,7 +189,7 @@ module "subnet-k8sWorkerSubnetAd3" {
 module "instances-etcd-ad1" {
   source                    = "instances/etcd"
   count                     = "${var.etcdAd1Count}"
-  availability_domain       = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain       = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   compartment_ocid          = "${var.compartment_ocid}"
   display_name              = "etcd-ad1"
   domain_name               = "${var.domain_name}"
@@ -209,7 +209,7 @@ module "instances-etcd-ad1" {
 module "instances-etcd-ad2" {
   source                    = "instances/etcd"
   count                     = "${var.etcdAd2Count}"
-  availability_domain       = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain       = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   compartment_ocid          = "${var.compartment_ocid}"
   display_name              = "etcd-ad2"
   domain_name               = "${var.domain_name}"
@@ -229,7 +229,7 @@ module "instances-etcd-ad2" {
 module "instances-etcd-ad3" {
   source                    = "instances/etcd"
   count                     = "${var.etcdAd3Count}"
-  availability_domain       = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain       = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   compartment_ocid          = "${var.compartment_ocid}"
   display_name              = "etcd-ad3"
   docker_ver                = "${var.docker_ver}"
@@ -254,7 +254,7 @@ module "instances-k8smaster-ad1" {
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_count           = "${var.k8sMasterAd1Count + var.k8sMasterAd2Count + var.k8sMasterAd3Count}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-master-ad1"
   docker_ver                 = "${var.docker_ver}"
@@ -282,7 +282,7 @@ module "instances-k8smaster-ad2" {
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_count           = "${var.k8sMasterAd1Count + var.k8sMasterAd2Count + var.k8sMasterAd3Count}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-master-ad2"
   docker_ver                 = "${var.docker_ver}"
@@ -310,7 +310,7 @@ module "instances-k8smaster-ad3" {
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_count           = "${var.k8sMasterAd1Count + var.k8sMasterAd2Count + var.k8sMasterAd3Count}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-master-ad3"
   docker_ver                 = "${var.docker_ver}"
@@ -337,7 +337,7 @@ module "instances-k8sworker-ad1" {
   count                      = "${var.k8sWorkerAd1Count}"
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[0],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[0],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-worker-ad1"
   docker_ver                 = "${var.docker_ver}"
@@ -366,7 +366,7 @@ module "instances-k8sworker-ad2" {
   count                      = "${var.k8sWorkerAd2Count}"
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[1],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[1],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-worker-ad2"
   docker_ver                 = "${var.docker_ver}"
@@ -395,7 +395,7 @@ module "instances-k8sworker-ad3" {
   count                      = "${var.k8sWorkerAd3Count}"
   api_server_cert_pem        = "${module.k8s-tls.api_server_cert_pem}"
   api_server_private_key_pem = "${module.k8s-tls.api_server_private_key_pem}"
-  availability_domain        = "${lookup(data.baremetal_identity_availability_domains.ADs.availability_domains[2],"name")}"
+  availability_domain        = "${lookup(data.oci_identity_availability_domains.ADs.availability_domains[2],"name")}"
   compartment_ocid           = "${var.compartment_ocid}"
   display_name_prefix        = "k8s-worker-ad3"
   docker_ver                 = "${var.docker_ver}"
